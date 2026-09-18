@@ -7,6 +7,10 @@ public class Transaction {
     private double amount;
     private String accountNumber;
 
+    public Transaction(String num){
+        this.accountNumber = num;
+    }
+
     public void setAcc(String accNum){
         this.accountNumber = accNum;
     }

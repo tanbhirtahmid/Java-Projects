@@ -5,14 +5,14 @@ public class Account {
     private String userName;
     private String accounttype;
     private double balance;
-    private Transaction transaction = new Transaction();
+    private Transaction transaction;
 
     public Account(String num, String name, String type, double balance){
         this.accountnumber = num;
         this.userName = name;
         this.accounttype = type;
         this.balance = balance;
-        this.transaction.setAcc(num);
+        transaction = new Transaction(num);
     }
 
     public String getTransactionDetails(){
