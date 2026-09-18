@@ -7,6 +7,14 @@ public class Account {
     private double balance;
     private Transaction transaction = new Transaction();
 
+    public Account(String num, String name, String type, double balance){
+        this.accountnumber = num;
+        this.userName = name;
+        this.accounttype = type;
+        this.balance = balance;
+        this.transaction.setAcc(num);
+    }
+
     public String getTransactionDetails(){
         return this.transaction.getTransactionDetails();
     }
@@ -59,8 +67,8 @@ public class Account {
         else return false;
      }
 
-     public String getAccountDetails(){
+     public String toString(){
 
-        return "Account number: "+ this.accountnumber + " Name: " + this.userName + "Type: " + this.accounttype + " Balance: "+ this.balance;
+        return "\nAccount Number: "+ this.accountnumber + " | Name: " + this.userName + " | Type: " + this.accounttype + " | Balance: "+ this.balance;
      }
 }
