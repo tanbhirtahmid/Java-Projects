@@ -11,9 +11,9 @@ public class Transaction {
         this.accountNumber = num;
     }
 
-    public void setAcc(String accNum){
-        this.accountNumber = accNum;
-    }
+//    public void setAcc(String accNum){
+//        this.accountNumber = accNum;
+//    }
 
     public void setType(String type){
         this.type = type;
@@ -22,7 +22,7 @@ public class Transaction {
     public void setAmount(double amount){
         this.amount = amount;
     }
-    public String getTransactionDetails(){
+    public String toString(){
         return "\nTransaction ID: " + this.transactionId + "\nAccount Number: " + this.accountNumber + "\nDate: " + this.date + "\nType: " + this.type + "\nAmount: " + this.amount;
     }
 }
