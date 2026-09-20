@@ -3,4 +3,7 @@ public class Registration {
     public void addCourse(Student student, Course course){
 
     }
+    public void getCourses(String id){
+
+    }
 }
