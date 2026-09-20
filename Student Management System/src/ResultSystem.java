@@ -12,15 +12,15 @@ public class ResultSystem {
 
     }
 
-    public void getMarks(Course course){
-
+    public double getMarks(Course course){
+        return this.marks;
     }
 
-    public void getCourseGrade(Course course){
-
+    public double getCourseGrade(Course course){
+        return this.grades;
     }
 
     public double getcgpa(String id){
-
+        return this.cgpa;
     }
 }
