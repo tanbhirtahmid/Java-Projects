@@ -15,45 +15,41 @@ public class Account {
         transaction = new Transaction(num);
     }
 
-    public String getTransactionDetails(){
-        return this.transaction.getTransactionDetails();
-    }
-
-    public void setNumber(String number)
-    {
-        this.accountnumber = number;
-        this.transaction.setAcc(number);
-    }
+//    public void setNumber(String number)
+//    {
+//        this.accountnumber = number;
+//        this.transaction.setAcc(number);
+//    }
 
     public String getNumber(){
         return this.accountnumber;
     }
 
-    public void setUserName(String name){
-        this.userName = name;
-    }
+//    public void setUserName(String name){
+//        this.userName = name;
+//    }
      public String getUserName(){
         return this.userName;
      }
 
-     public void setType(String type){
-        this.accounttype = type;
-     }
+//     public void setType(String type){
+//        this.accounttype = type;
+//     }
 
      public  String getType(){
         return this.accounttype;
      }
 
-     public void setBalance(double balance){
-        this.balance = balance;
-     }
+//     public void setBalance(double balance){
+//        this.balance = balance;
+//     }
 
      public void deposit(double amount){
 
         this.balance = this.balance + amount;
          this.transaction.setType("deposit");
          this.transaction.setAmount(amount);
-         System.out.println(this.getTransactionDetails());
+         System.out.println(this.transaction);
      }
 
      public boolean withdraw(double amount){
@@ -61,7 +57,7 @@ public class Account {
             this.balance = this.balance - amount;
             this.transaction.setType("withdraw");
             this.transaction.setAmount(amount);
-            System.out.println(this.getTransactionDetails());
+            System.out.println(this.transaction);
             return true;
         }
         else return false;
