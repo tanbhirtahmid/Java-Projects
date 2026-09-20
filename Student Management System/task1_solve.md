@@ -18,7 +18,8 @@ Class Course
 Class Registration
 {
 -student: Student
--courses: List<course>addCourse(Student, Course):void
+-courses: List<course>
+addCourse(Student, Course):void
 getCourses(id): List<course>
 }
 
