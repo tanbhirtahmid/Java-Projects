@@ -5,6 +5,8 @@ private BankAccount account;
 private Transaction transaction;
 private BankAccount accountholders[]; //Account array for storing the bank accounts
 private int currentIndex=0; //Pointer of accounts
+
+
 public BankSystem(int numberOfAccounts)
 {
     this.accountholders = new BankAccount[numberOfAccounts];
@@ -37,7 +39,21 @@ public void createAccount(BankAccount account)
 
 public void deleteAccount(String accountNumber)
 {
-    System.out.println("Delete account");
+    for(int i = 0; i < currentIndex; i++){
+        if(this.accountholders[i].getAccountNumber().equals(accountNumber))
+        {
+            this.accountholders[i] = null;
+            System.out.println("Deleted " + accountNumber);
+            currentIndex--;
+            for(int j = i; j < currentIndex; j++)
+            {
+                this.accountholders[j] = this.accountholders[j+1];
+            }
+            return;
+        }
+    }
+
+    System.out.println(accountNumber + " does not exist");
 
 }
 
