@@ -44,11 +44,12 @@ public void deleteAccount(String accountNumber)
         {
             this.accountholders[i] = null;
             System.out.println("Deleted " + accountNumber);
-            currentIndex--;
-            for(int j = i; j < currentIndex; j++)
+            for(int j = i; j < currentIndex-1; j++)
             {
                 this.accountholders[j] = this.accountholders[j+1];
             }
+            this.accountholders[currentIndex] = null;
+            currentIndex--;
             return;
         }
     }
