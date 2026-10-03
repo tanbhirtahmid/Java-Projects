@@ -4,7 +4,8 @@ public class BankSystem {
 private BankAccount account;
 private Transaction transaction;
 private BankAccount accountholders[]; //Account array for storing the bank accounts
-private int currentIndex=0; //Pointer of accounts
+private int currentIndex=0;
+private int delCount = 0;//delte cound
 
 
 public BankSystem(int numberOfAccounts)
@@ -50,6 +51,7 @@ public void deleteAccount(String accountNumber)
             }
             this.accountholders[currentIndex] = null;
             currentIndex--;
+            this.delCount++;
             return;
         }
     }
@@ -57,6 +59,10 @@ public void deleteAccount(String accountNumber)
     System.out.println(accountNumber + " does not exist");
 
 }
+
+    public int getDelCount() { // get the number of account deleted
+        return delCount;
+    }
 
 public void performtransaction(String number, double amount)
 {

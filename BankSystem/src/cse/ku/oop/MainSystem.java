@@ -15,6 +15,7 @@ public class MainSystem {
             System.out.println("Found the customer>>"+baccnt);
         }
         banksys.deleteAccount(baccnt.getAccountNumber());
+        System.out.println(banksys.getDelCount());
         if(banksys.searchAccount(baccnt.getAccountNumber()) !=null) System.out.println("fount it");
 
 //        BankAccount baccount1 = new BankAccount("00011", "Bob", 100);
