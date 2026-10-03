@@ -13,6 +13,7 @@ public class MainSystem {
         System.out.println("Number of customers in the bank: "+ banksys.getNumberOfCustomers());
 
         BankAccount baccnt = banksys.searchAccount("00022");
+
         if(baccnt==null){
             System.out.println("Customer not found");
         }

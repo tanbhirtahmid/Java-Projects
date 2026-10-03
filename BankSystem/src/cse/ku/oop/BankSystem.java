@@ -8,12 +8,14 @@ private int currentIndex=0;
 private int delCount = 0; // delete count
 private int transactionCnt = 0;//transaction count
 
-
+// constructor
 public BankSystem(int numberOfAccounts, int numberOfTransactions)
 {
     this.accountholders = new BankAccount[numberOfAccounts];
     this.transaction = new Transaction[numberOfTransactions];
 }
+
+// transaction methods start
 
 public void addTransaction(String number, String type, double amount){ // managing transaction
     Transaction transac = new Transaction(number, type, amount);
@@ -38,7 +40,25 @@ public void listTransaction(String number)
 
 }
 
-public void addAccount(String number, String name, double initBalance){
+    public void performtransaction(String number, String type, double amount)
+    {
+        BankAccount acc = searchAccount(number);
+        if (type == "deposit")
+        {
+            acc.deposit(amount);
+            addTransaction(number, "deposit", amount);
+        }
+        else if(type == "withdraw")
+        {
+            acc.withdraw(amount);
+            addTransaction(number, "withdraw", amount);
+        }
+
+    }
+
+// normal account methods start
+
+    public void addAccount(String number, String name, double initBalance){
     BankAccount account = new BankAccount(number, name, initBalance);
     this.accountholders[currentIndex] = account; //Adding account object to array
     this.currentIndex++; //Increment the pointer
@@ -88,22 +108,6 @@ public void deleteAccount(String accountNumber)
     public int getDelCount() { // get the number of account deleted
         return delCount;
     }
-
-public void performtransaction(String number, String type, double amount)
-{
-    BankAccount acc = searchAccount(number);
-    if (type == "deposit")
-    {
-        acc.deposit(amount);
-        addTransaction(number, "deposit", amount);
-    }
-    else if(type == "withdraw")
-    {
-        acc.withdraw(amount);
-        addTransaction(number, "withdraw", amount);
-    }
-
-}
 
 //private void performDeposit(double amount){
 //    this.account.deposit(amount);
