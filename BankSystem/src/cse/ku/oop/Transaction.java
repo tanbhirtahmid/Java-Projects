@@ -13,8 +13,16 @@ public class Transaction {
         this.tid = "null";
     }
 
-    public String transactionDetails(){
+    public String getAccountNumber()
+    {
+        return this.accountNumber;
+    }
 
-        return "Dummy";
+    public String transactionDetails(){
+        if(this.type == "withdraw")
+        {
+            return "\n--------------------------\n" + "Account Number: " + this.accountNumber + '\n' + "Type: " + this.type + "\nAmount: -" + this.amount + "\n--------------------------\n";
+        }
+        return "\n--------------------------\n" + "Account Number: " + this.accountNumber + '\n' + "Type: " + this.type + "\nAmount: +" + this.amount + "\n--------------------------\n";
     }
 }

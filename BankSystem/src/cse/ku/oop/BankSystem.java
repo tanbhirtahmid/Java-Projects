@@ -5,8 +5,8 @@ private BankAccount account;
 private Transaction transaction[];
 private BankAccount accountholders[]; //Account array for storing the bank accounts
 private int currentIndex=0;
-private int delCount = 0;
-private int transactionCnt = 0;//delte cound
+private int delCount = 0; // delete count
+private int transactionCnt = 0;//transaction count
 
 
 public BankSystem(int numberOfAccounts, int numberOfTransactions)
@@ -15,10 +15,27 @@ public BankSystem(int numberOfAccounts, int numberOfTransactions)
     this.transaction = new Transaction[numberOfTransactions];
 }
 
-public void addTransaction(String number, String type, double amount){
+public void addTransaction(String number, String type, double amount){ // managing transaction
     Transaction transac = new Transaction(number, type, amount);
     this.transaction[transactionCnt] = transac;
     transactionCnt++;
+}
+
+public int getNumberOfTransactions()
+{
+    return this.transactionCnt;
+}
+
+public void listTransaction(String number)
+{
+    for(Transaction x : this.transaction)
+    {
+        if(x!=null && x.getAccountNumber().equals(number))
+        {
+            System.out.println(x.transactionDetails());
+        }
+    }
+
 }
 
 public void addAccount(String number, String name, double initBalance){
@@ -29,7 +46,7 @@ public void addAccount(String number, String name, double initBalance){
 
 public BankAccount searchAccount(String number){
     for(BankAccount accnt: this.accountholders){
-        if(accnt.getAccountNumber().equals(number)) {
+        if(accnt!=null && accnt.getAccountNumber().equals(number)) {
             return accnt; //If found return the account object
         }
     }
@@ -72,30 +89,42 @@ public void deleteAccount(String accountNumber)
         return delCount;
     }
 
-public void performtransaction(String number, double amount)
+public void performtransaction(String number, String type, double amount)
 {
+    BankAccount acc = searchAccount(number);
+    if (type == "deposit")
+    {
+        acc.deposit(amount);
+        addTransaction(number, "deposit", amount);
+    }
+    else if(type == "withdraw")
+    {
+        acc.withdraw(amount);
+        addTransaction(number, "withdraw", amount);
+    }
 
-    this.account.deposit(amount);
 }
 
-public void performDeposit(double amount){
+//private void performDeposit(double amount){
+//    this.account.deposit(amount);
+//
+//}
+//
+//private void performWithdraw(double amount){
+//
+//    this.account.withdraw(amount);
+//}
 
-    this.account.deposit(amount);
+public void printStatement(String number){
+
+    BankAccount acc = searchAccount(number);
+    acc.statement();
 }
 
-public void performWithdraw(double amount){
+public void accountDetails(String number){
 
-    this.account.withdraw(amount);
-}
-
-public void printStatement(){
-
-    this.account.statement();
-}
-
-public void accountDetails(){
-
-    System.out.println(this.account);
+    BankAccount acc = searchAccount(number);
+    System.out.println(acc);
     }
 
 }
