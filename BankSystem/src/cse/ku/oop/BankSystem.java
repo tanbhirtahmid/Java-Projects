@@ -2,15 +2,23 @@ package cse.ku.oop;
 
 public class BankSystem {
 private BankAccount account;
-private Transaction transaction;
+private Transaction transaction[];
 private BankAccount accountholders[]; //Account array for storing the bank accounts
 private int currentIndex=0;
-private int delCount = 0;//delte cound
+private int delCount = 0;
+private int transactionCnt = 0;//delte cound
 
 
-public BankSystem(int numberOfAccounts)
+public BankSystem(int numberOfAccounts, int numberOfTransactions)
 {
     this.accountholders = new BankAccount[numberOfAccounts];
+    this.transaction = new Transaction[numberOfTransactions];
+}
+
+public void addTransaction(String number, String type, double amount){
+    Transaction transac = new Transaction(number, type, amount);
+    this.transaction[transactionCnt] = transac;
+    transactionCnt++;
 }
 
 public void addAccount(String number, String name, double initBalance){
@@ -71,19 +79,23 @@ public void performtransaction(String number, double amount)
 }
 
 public void performDeposit(double amount){
+
     this.account.deposit(amount);
 }
 
 public void performWithdraw(double amount){
-        this.account.withdraw(amount);
+
+    this.account.withdraw(amount);
 }
 
 public void printStatement(){
+
     this.account.statement();
 }
 
 public void accountDetails(){
-        System.out.println(this.account);
+
+    System.out.println(this.account);
     }
 
 }

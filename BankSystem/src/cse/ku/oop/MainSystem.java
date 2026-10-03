@@ -3,7 +3,7 @@ package cse.ku.oop;
 public class MainSystem {
 
     public static void main(String args[]){
-        BankSystem banksys = new BankSystem(10); //Maximum 10 accounts
+        BankSystem banksys = new BankSystem(10, 10); //Maximum 10 accounts
         banksys.addAccount("00011", "Jhon", 100);
         banksys.addAccount("00022", "Bob", 250);
         System.out.println("Number of customers in the bank: "+ banksys.getNumberOfCustomers());
