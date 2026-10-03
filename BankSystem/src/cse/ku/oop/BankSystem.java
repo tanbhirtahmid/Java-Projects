@@ -20,7 +20,7 @@ public BankSystem(int numberOfAccounts, int numberOfTransactions)
 public void addTransaction(String number, String type, double amount){ // managing transaction
     Transaction transac = new Transaction(number, type, amount);
     this.transaction[transactionCnt] = transac;
-    transactionCnt++;
+    this.transactionCnt++;
 }
 
 public int getNumberOfTransactions()
@@ -30,11 +30,11 @@ public int getNumberOfTransactions()
 
 public void listTransaction(String number)
 {
-    for(Transaction x : this.transaction)
+    for(int i = 0; i < this.transactionCnt; i++)
     {
-        if(x!=null && x.getAccountNumber().equals(number))
+        if(this.transaction[i].getAccountNumber().equals(number))
         {
-            System.out.println(x.transactionDetails());
+            System.out.println(this.transaction[i].transactionDetails());
         }
     }
 
@@ -65,9 +65,9 @@ public void listTransaction(String number)
 }
 
 public BankAccount searchAccount(String number){
-    for(BankAccount accnt: this.accountholders){
-        if(accnt!=null && accnt.getAccountNumber().equals(number)) {
-            return accnt; //If found return the account object
+    for(int i = 0; i < currentIndex; i++){
+        if(this.accountholders[i].getAccountNumber().equals(number)) {
+            return this.accountholders[i]; //If found return the account object
         }
     }
     return null; //If account not found
