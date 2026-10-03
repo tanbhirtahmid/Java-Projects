@@ -20,15 +20,17 @@ public class MainSystem {
             System.out.println("Found the customer>>"+baccnt);
         }
 
+        banksys.printStatement("00022");
+
         banksys.performtransaction("00022", "deposit", 10000);
 
         banksys.performtransaction("00022", "withdraw", 5000);
 
-        banksys.printStatement("00022");
 
         banksys.listTransaction("00022");
 
-        if(banksys.searchAccount("00022") !=null) System.out.println("fount it");
+        banksys.printStatement("00022");
+//        if(banksys.searchAccount("00022") !=null) System.out.println("fount it");
         banksys.deleteAccount(baccnt.getAccountNumber());
         System.out.println(banksys.getDelCount());
 
