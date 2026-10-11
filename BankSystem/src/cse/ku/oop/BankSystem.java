@@ -65,12 +65,12 @@ public void listTransaction(String number)
             System.out.println("Account " + number + " not found");
             return;
         }
-        if (type == "deposit")
+        if (type.equals("deposit"))
         {
             acc.deposit(amount);
             addTransaction(number, "deposit", amount);
         }
-        else if(type == "withdraw")
+        else if(type.equals("withdraw"))
         {
             acc.withdraw(amount);
             addTransaction(number, "withdraw", amount);

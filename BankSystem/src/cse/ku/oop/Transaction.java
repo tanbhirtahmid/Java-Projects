@@ -22,7 +22,7 @@ public class Transaction {
     }
 
     public String transactionDetails(){
-        if(this.type == "withdraw")
+        if(this.type.equals("withdraw"))
         {
             return "\n--------------------------\n" + "Transaction ID: " + this.tid + '\n' + "Account Number: " + this.accountNumber + '\n' + "Type: " + this.type + "\nAmount: -" + this.amount + "\n--------------------------\n";
         }
