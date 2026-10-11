@@ -1,52 +1,51 @@
 package cse.ku.oop;
+import java.util.ArrayList;
 
 public class BankSystem {
 //private BankAccount account;
-private Transaction transaction[];
-private BankAccount accountholders[]; //Account array for storing the bank accounts
-private int currentIndex=0;
+private ArrayList<Transaction> transaction;
+private ArrayList<BankAccount> accountholders; //Account array for storing the bank accounts
 private int delCount = 0; // delete count
-private int transactionCnt = 0;//transaction count
 
 public BankSystem(int numberOfAccounts, int numberOfTransactions)
 {
-    this.accountholders = new BankAccount[numberOfAccounts];
-    this.transaction = new Transaction[numberOfTransactions];
+    this.accountholders = new ArrayList<BankAccount>(numberOfAccounts);
+    this.transaction = new ArrayList<Transaction>(numberOfTransactions);
 }
 
 // transaction methods start
 
 public void addTransaction(String number, String type, double amount){ // managing transaction
     Transaction transac = new Transaction(number, type, amount);
-    this.transaction[transactionCnt] = transac;
-    this.transactionCnt++;
+    this.transaction.add(transac);
+//    this.transactionCnt++;
 }
 
 public void listAccounts(){
-    if(currentIndex==0){
+    if(accountholders.isEmpty()){
         System.out.println("No accounts in the list");
         return;
     }
     System.out.println('\n' + "List of accounts: ");
-    for(int i =0 ; i<currentIndex; i++)
+    for(int i =0 ; i<accountholders.size(); i++)
     {
-        System.out.println(this.accountholders[i].toString());
+        System.out.println(this.accountholders.get(i).toString());
     }
 }
 
 public int getNumberOfTransactions()
 {
-    return this.transactionCnt;
+    return this.transaction.size();
 }
 
 public void listTransaction(String number)
 {
     boolean notFound = true;
-    for(int i = 0; i < this.transactionCnt; i++)
+    for(int i = 0; i < this.transaction.size(); i++)
     {
-        if(this.transaction[i].getAccountNumber().equals(number))
+        if(this.transaction.get(i).getAccountNumber().equals(number))
         {
-            System.out.println(this.transaction[i].transactionDetails());
+            System.out.println(this.transaction.get(i).transactionDetails());
             notFound = false;
         }
     }
@@ -85,22 +84,22 @@ public void listTransaction(String number)
     BankAccount account = searchAccount(number);
     if(account == null){
         account = new BankAccount(number, name, initBalance);
-    this.accountholders[currentIndex] = account; //Adding account object to array
-    this.currentIndex++; //Increment the pointer
+    this.accountholders.add(account); //Adding account object to array
+//    this.currentIndex++; //Increment the pointer
     }
 }
 
     public BankAccount searchAccount(String number){
-    for(int i = 0; i < currentIndex; i++){
-        if(this.accountholders[i].getAccountNumber().equals(number)) {
-            return this.accountholders[i]; //If found return the account object
+    for(int i = 0; i < accountholders.size(); i++){
+        if(this.accountholders.get(i).getAccountNumber().equals(number)) {
+            return this.accountholders.get(i); //If found return the account object
         }
     }
     return null; //If account not found
 }
 
 public int getNumberOfCustomers(){
-    return this.currentIndex;
+    return this.accountholders.size();
 }
 
 //public void createAccount(BankAccount account)
@@ -111,17 +110,11 @@ public int getNumberOfCustomers(){
 
     public void deleteAccount(String accountNumber)
     {
-        for(int i = 0; i < currentIndex; i++){
-            if(this.accountholders[i].getAccountNumber().equals(accountNumber))
+        for(int i = 0; i < accountholders.size(); i++){
+            if(this.accountholders.get(i).getAccountNumber().equals(accountNumber))
             {
-                this.accountholders[i] = null;
+                this.accountholders.remove(i);
                 System.out.println("Deleted " + accountNumber);
-                for(int j = i; j < currentIndex-1; j++)
-                {
-                    this.accountholders[j] = this.accountholders[j+1];
-                }
-                this.accountholders[currentIndex] = null;
-                currentIndex--;
                 this.delCount++;
                 return;
             }
